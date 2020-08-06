@@ -1,10 +1,19 @@
 package ie.cct.sbs19016bakingrecipes;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.io.StringReader;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.List;
+import java.util.jar.JarEntry;
+import java.util.jar.JarFile;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -25,7 +34,7 @@ public class LocalJsonParser {
 	public LocalJsonParser() {}
 	
 	
-	public List<Recipe> myRecipeBuilder() {
+	public List<Recipe> myRecipeBuilder() throws IOException, URISyntaxException {
 		
 		//Gson g = new Gson(); // Using Gson library - REF https://github.com/google/gson
 		// also REF. https://stackoverflow.com/questions/2591098/how-to-parse-json-in-java
@@ -35,22 +44,50 @@ public class LocalJsonParser {
 		
 		List<Recipe> myRecipeBook = new ArrayList<Recipe>();
 		
-		try {
-			recipeBook = new File( this.getClass().getResource( "/static/recipes_json" ).toURI() );
-		} catch (URISyntaxException e) {
-			// Unhandled exception type URISyntaxException 
-			// => REF https://stackoverflow.com/questions/19255821/unhandled-exception-type-urisyntaxexception
-			e.printStackTrace();
-		}
 
-		try {
-			// About JsonReader: https://howtodoinjava.com/gson/jsonreader-streaming-json-parser/#:~:text=The%20JsonReader%20is%20the%20streaming,as%20a%20stream%20of%20tokens.
-			reader = new JsonReader(new FileReader(recipeBook));
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			System.out.println("recipes not found on server");
-			e.printStackTrace();
-		}
+		// Snippet below is from https://stackoverflow.com/questions/18055189/why-is-my-uri-not-hierarchical
+		// file name is BOOT-INF/classes/static/recipes_json
+		// Path : C:\Users\matbe\OneDrive\CCT_College_CompScience(SpringBoard)\_FINAL_PROJECT\sbs19016-baking-recipes\BOOT-INF\classes\static\recipes_json
+//		File jarFile = new File(this.getClass().getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
+//        String actualFile = jarFile.getParentFile().getAbsolutePath()+File.separator+"sbs19016-baking-recipes-0.0.1-SNAPSHOT.jar";
+//        System.out.println("jarFile is : "+jarFile.getAbsolutePath());
+//        System.out.println("actulaFilePath is : "+actualFile);
+//        final JarFile jar = new JarFile(actualFile);
+//        final Enumeration<JarEntry> entries = jar.entries(); //gives ALL entries in jar
+//        System.out.println("Reading entries in jar file ");
+//        while(entries.hasMoreElements()) {
+//            JarEntry jarEntry = entries.nextElement();
+//            final String name = jarEntry.getName();
+//            if (name.startsWith("")) { //filter according to the path
+//                System.out.println("file name is "+name);
+//                System.out.println("is directory : "+jarEntry.isDirectory());
+//                File scriptsFile  = new File(name);
+//                System.out.println("file names are : "+scriptsFile.getAbsolutePath());
+//
+//            }
+//        }
+//        jar.close();
+		
+        // Also check https://stackoverflow.com/questions/20389255/reading-a-resource-file-from-within-jar
+		// String path = File.separator + "static"+ File.separator + "recipes_json";
+        InputStream in = getClass().getResourceAsStream("/static/recipes_json"); 
+        BufferedReader br = new BufferedReader(new InputStreamReader(in));
+        
+        StringBuilder sb = new StringBuilder();
+        String line;
+        while ((line = br.readLine()) != null) {
+            sb.append(line);
+        }
+        
+        // Create a Reader from String
+        Reader stringReader = new StringReader(sb.toString());
+        
+        System.out.println("Retrieving recipes via InputStream: " + sb);
+        
+        JsonObject json = new JsonObject();
+
+		// About JsonReader: https://howtodoinjava.com/gson/jsonreader-streaming-json-parser/#:~:text=The%20JsonReader%20is%20the%20streaming,as%20a%20stream%20of%20tokens.
+		reader = new JsonReader(stringReader);
 		
 		JsonArray recipesInJson = (JsonArray) com.google.gson.JsonParser.parseReader(reader);
 		// System.out.println(recipesInJson.toString()); // testing point

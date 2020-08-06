@@ -1,5 +1,7 @@
 package ie.cct.sbs19016bakingrecipes;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,13 +20,17 @@ import ie.cct.sbs19016bakingrecipes.LocalJsonParser;
 @RestController
 public class BakingAppController {
 	
+	List<Recipe> myBakingRecipes = new ArrayList<>();
 	
-	// Populate with initial recipes
-	LocalJsonParser myJP = new LocalJsonParser();
-	List<Recipe> myBakingRecipes = myJP.myRecipeBuilder();
-	
-	
-	public BakingAppController() {}
+	public BakingAppController() throws URISyntaxException {
+		// Populate with initial recipes
+		try {
+			LocalJsonParser myJP = new LocalJsonParser();
+			myBakingRecipes = myJP.myRecipeBuilder();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	
 	/*
