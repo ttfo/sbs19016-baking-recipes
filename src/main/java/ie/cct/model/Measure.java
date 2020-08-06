@@ -17,25 +17,30 @@ public class Measure implements MeasurementSystem {
 	private static double ounceToGram = 28.35; // 1 ounce = 28.35 gr
 	private static double fluidOunceToML = 29.57; // 1 fluid ounce = 29.57 ml
 	
-	private static List<String> measurementUnitUsVolType = Arrays.asList("TSP", "TBLSP", "flOz", "CUP", "pint");
+	private static String refUnitUsVol = "flOZ";
+	private static String refUnitUsWeight = "OZ";
+	private static String refUnitMetrVol = "ml";
+	private static String refUnitMetrWeight = "G";
+	
+	private static List<String> measurementUnitUsVolType = Arrays.asList("TSP", "TBLSP", "flOZ", "CUP", "pint");
 	private static List<Double> measurementUnitUsVolInFlOz = Arrays.asList(0.17, 0.5, 1.0, 8.0, 16.0); // flOz is taken as reference unit
 	
-	private static List<HashMap> measurementUnitUsVol = buildMeasHashMap(measurementUnitUsVolType, measurementUnitUsVolInFlOz);
+	private static HashMap<String, Double> measurementUnitUsVol = buildMeasHashMap(measurementUnitUsVolType, measurementUnitUsVolInFlOz);
 
 	private static List<String> measurementUnitUsWeightType = Arrays.asList("OZ", "lb");
 	private static List<Double> measurementUnitUsWeightInOz = Arrays.asList(1.0, 16.0); // Oz is taken as reference unit
 	
-	private static List<HashMap> measurementUnitUsWeight = buildMeasHashMap(measurementUnitUsWeightType, measurementUnitUsWeightInOz);
+	private static HashMap<String, Double> measurementUnitUsWeight = buildMeasHashMap(measurementUnitUsWeightType, measurementUnitUsWeightInOz);
 	
 	private static List<String> measurementUnitMetrVolType = Arrays.asList("ml", "lt");
 	private static List<Double> measurementUnitMetrVolInMl = Arrays.asList(1.0, 1000.0); // ml is taken as reference unit
 	
-	private static List<HashMap> measurementUnitMetrVol = buildMeasHashMap(measurementUnitMetrVolType, measurementUnitMetrVolInMl);
+	private static HashMap<String, Double> measurementUnitMetrVol = buildMeasHashMap(measurementUnitMetrVolType, measurementUnitMetrVolInMl);
 	
 	private static List<String> measurementUnitMetrWeightType = Arrays.asList("G", "K");
 	private static List<Double> measurementUnitMetrWeightInGr = Arrays.asList(1.0, 1000.0); // gr is taken as reference unit	
 	
-	private static List<HashMap> measurementUnitMetrWeight = buildMeasHashMap(measurementUnitMetrWeightType, measurementUnitMetrWeightInGr);
+	private static HashMap<String, Double> measurementUnitMetrWeight = buildMeasHashMap(measurementUnitMetrWeightType, measurementUnitMetrWeightInGr);
 	
 	private static List<String> measurementUnitGeneric = Arrays.asList("UNIT");
 	
@@ -45,6 +50,8 @@ public class Measure implements MeasurementSystem {
 	
 	private double measurementValue;
 	private String measurementUnit;
+	private double measurementValueRefUnit; // value in reference unit
+	private String measurementRefUnit;
 	
 	
 	public Measure() {}
@@ -61,15 +68,23 @@ public class Measure implements MeasurementSystem {
 				if (measurementUnitUsVolType.contains(measurementUnit)) {
 					this.setMeasurementType(ie.cct.model.MeasurementSystem.measurementType.volume);
 					this.setMeasurmentLocalSystem(ie.cct.model.MeasurementSystem.measurmentLocalSystem.uscs);
+					this.measurementValueRefUnit = measurementUnitUsVol.get(measurementUnit)*measurementValue;
+					this.measurementRefUnit = refUnitUsVol;
 				} else if (measurementUnitUsWeightType.contains(measurementUnit)) {
 					this.setMeasurementType(ie.cct.model.MeasurementSystem.measurementType.weight);
-					this.setMeasurmentLocalSystem(ie.cct.model.MeasurementSystem.measurmentLocalSystem.uscs);			
+					this.setMeasurmentLocalSystem(ie.cct.model.MeasurementSystem.measurmentLocalSystem.uscs);
+					this.measurementValueRefUnit = measurementUnitUsWeight.get(measurementUnit)*measurementValue;
+					this.measurementRefUnit = refUnitUsWeight;
 				} else if (measurementUnitMetrVolType.contains(measurementUnit)) {
 					this.setMeasurementType(ie.cct.model.MeasurementSystem.measurementType.volume);
-					this.setMeasurmentLocalSystem(ie.cct.model.MeasurementSystem.measurmentLocalSystem.metric);			
+					this.setMeasurmentLocalSystem(ie.cct.model.MeasurementSystem.measurmentLocalSystem.metric);
+					this.measurementValueRefUnit = measurementUnitMetrVol.get(measurementUnit)*measurementValue;
+					this.measurementRefUnit = refUnitMetrVol;
 				} else if (measurementUnitMetrWeightType.contains(measurementUnit)) {
 					this.setMeasurementType(ie.cct.model.MeasurementSystem.measurementType.weight);
-					this.setMeasurmentLocalSystem(ie.cct.model.MeasurementSystem.measurmentLocalSystem.metric);			
+					this.setMeasurmentLocalSystem(ie.cct.model.MeasurementSystem.measurmentLocalSystem.metric);
+					this.measurementValueRefUnit = measurementUnitMetrWeight.get(measurementUnit)*measurementValue;
+					this.measurementRefUnit = refUnitMetrWeight;
 				} else if (measurementUnitGeneric.contains(measurementUnit)) {
 					this.setMeasurementType(ie.cct.model.MeasurementSystem.measurementType.generic);
 					this.setMeasurmentLocalSystem(ie.cct.model.MeasurementSystem.measurmentLocalSystem.generic);			
@@ -85,20 +100,17 @@ public class Measure implements MeasurementSystem {
 	// TODO create methods to convert from US to metric
 	
 	// Helper method to build HashMap of measurement type and multiplier to reference unit
-	private static List<HashMap> buildMeasHashMap(List<String> ls, List<Double> ld) {
+	private static HashMap<String, Double> buildMeasHashMap(List<String> ls, List<Double> ld) {
 		
-		List<HashMap> measurementUnitUsVol = new ArrayList<>();
+		Map<String, Double> measurementUnitUsVol = new HashMap<String, Double>();
 		
 		for (int i = 0; i < ls.size(); i++) {
 			
-			HashMap<String, Double> e = new HashMap<String, Double>();	
-			e.put(ls.get(i), ld.get(i)); // populate HashMap with name of unit and factor to minimal unit in system
-								// teaspoon (tsp) is 1/6 of fluid ounce
-			measurementUnitUsVol.add(e);
-			
+			measurementUnitUsVol.put(ls.get(i), ld.get(i)); // populate HashMap with name of unit and factor to minimal unit in system
+																// teaspoon (tsp) is 1/6 of fluid ounce			
 		};
 		
-		return measurementUnitUsVol;
+		return (HashMap<String, Double>) measurementUnitUsVol;
 		
 	}
 	
@@ -169,4 +181,21 @@ public class Measure implements MeasurementSystem {
 		return measurementUnit;
 	}
 
+	public double getMeasurementValueRefUnit() {
+		return measurementValueRefUnit;
+	}
+
+	public void setMeasurementValueRefUnit(double measurementValueRefUnit) {
+		this.measurementValueRefUnit = measurementValueRefUnit;
+	}
+
+	public String getMeasurementRefUnit() {
+		return measurementRefUnit;
+	}
+
+	public void setMeasurementRefUnit(String measurementRefUnit) {
+		this.measurementRefUnit = measurementRefUnit;
+	}
+	
+	
 }
