@@ -257,6 +257,12 @@
         "thumbnailURL": ""
       }
     ],
+    "author": [
+      {
+        "name": "Miriam",
+        "website":"udacity.com"
+      }
+    ], 
     "servings": 8,
     "image": ""
   },
@@ -419,6 +425,12 @@
         "thumbnailURL": ""
       }
     ],
+    "author": [
+      {
+        "name": "Miriam",
+        "website":"udacity.com"
+      }
+    ], 
     "servings": 8,
     "image": ""
   },
@@ -575,6 +587,12 @@
         "thumbnailURL": ""
       }
     ],
+    "author": [
+      {
+        "name": "Miriam",
+        "website":"udacity.com"
+      }
+    ], 
     "servings": 8,
     "image": ""
   }
