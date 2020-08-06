@@ -6,12 +6,12 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.stream.JsonReader;
 
+import ie.cct.model.Author;
 import ie.cct.model.Ingredient;
 import ie.cct.model.Measure;
 import ie.cct.model.Recipe;
@@ -27,7 +27,7 @@ public class LocalJsonParser {
 	
 	public List<Recipe> myRecipeBuilder() {
 		
-		Gson g = new Gson(); // Using Gson library - REF https://github.com/google/gson
+		//Gson g = new Gson(); // Using Gson library - REF https://github.com/google/gson
 		// also REF. https://stackoverflow.com/questions/2591098/how-to-parse-json-in-java
 
 		File recipeBook = null;
@@ -63,6 +63,7 @@ public class LocalJsonParser {
 			
 			recipe.setId(jObj.get("id").getAsInt());
 			recipe.setName(jObj.get("name").getAsString());
+			recipe.setType(jObj.get("type").getAsString());
 			recipe.setServings(jObj.get("servings").getAsInt());
 			recipe.setImage(jObj.get("image").getAsString());
 			
@@ -82,6 +83,7 @@ public class LocalJsonParser {
 				
 				ingredient.setMeasure(measure);
 				ingredient.setIngredientName(jObjIngr.get("ingredient").getAsString());
+				ingredient.setIngredientCategory(ie.cct.model.IngredientType.ingredientCategory.valueOf(jObjIngr.get("type").getAsString()));
 				
 				ingredients.add(ingredient);
 				
@@ -107,7 +109,28 @@ public class LocalJsonParser {
 								
 			}
 			
-			recipe.setSteps(steps);
+			recipe.setSteps(steps);	
+			
+			if (jObj.get("author") != null) {
+				
+				JsonArray authorsJson = jObj.get("author").getAsJsonArray();
+				List<Author> authors = new ArrayList<Author>();
+				
+				for (JsonElement jElAut : authorsJson) {
+					
+					JsonObject jObjAut = jElAut.getAsJsonObject();
+					Author author = new Author();
+					
+					author.setName(jObjAut.get("name").getAsString());
+					author.setWebsite(jObjAut.get("website").getAsString());
+					
+					authors.add(author);
+									
+				}
+				
+				recipe.setAuthors(authors);		
+			}
+			
 			System.out.println(recipe.toString());
 			
 			myRecipeBook.add(recipe);

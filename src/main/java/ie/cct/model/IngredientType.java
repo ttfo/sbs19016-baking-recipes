@@ -7,8 +7,14 @@ package ie.cct.model;
  */
 public interface IngredientType {
 	
-	enum ingredientCategory { liquid, fat, yeast, flour, other; }; // liquid can be water or milk, fat can be oil or butter, etc.
-	
+	// GUIDELINES ON INGREDIENT TYPES:
+	// liquid can be water or milk etc., 
+	// fat can be oil or butter or cream cheese or melted chocolate etc.,
+	// yeastOrLeaveningAgent can be sourdough starter or baking powder etc.,
+	// sweetener can be sugar etc., seasoning can be salt or pepper etc.,
+	// flavoring can be cocoa powder or vanilla extract
+	enum ingredientCategory { liquid, fat, yeastOrLeaveningAgent, flourOrSolid, sweetener, seasoning, flavoring, egg, other; }; 
+		
 	public void setIngredientCategory(IngredientType.ingredientCategory ingredientCategory);
 
 }

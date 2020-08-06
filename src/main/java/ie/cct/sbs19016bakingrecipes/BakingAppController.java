@@ -1,6 +1,5 @@
 package ie.cct.sbs19016bakingrecipes;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,26 +20,14 @@ public class BakingAppController {
 	List<Recipe> myBakingRecipes = myJP.myRecipeBuilder();
 	
 	
-	public BakingAppController() {
-		
-		for (Recipe r : myBakingRecipes) {
-			Author author = new Author();
-			author.setName("Miriam");
-			author.setWebsite("udacity.com"); // provider of recipes in JSON format
-			r.setAuthor(author);
-			
-			//System.out.println(r.getName()); //testing
-		}		
-		
-	}
-	
+	public BakingAppController() {}
 	
 	
 	/*
 	 * END-POINT => "Get my recipes"
 	 * Returns list of recipes in JSON format
 	 */	
-	@GetMapping("get-recipes") // http://localhost:8080/get-livestock
+	@GetMapping("get-recipes") // http://localhost:8080/get-recipes
 	public List<Recipe> getRecipes() { 
 		return myBakingRecipes;
 	}

@@ -2,6 +2,10 @@ package ie.cct.model;
 
 import java.util.List;
 
+/**
+ * @author matbe
+ *
+ */
 public class Recipe {
 
 	private int id;
@@ -10,18 +14,20 @@ public class Recipe {
 	private List<Step> steps;
 	private int servings;
 	private String image;
-	private Author author;
+	private List<Author> authors;
+	private String type;
 	
 	public Recipe() {}
 	
-	public Recipe(int id, String name, List<Ingredient> ingredients, List<Step> steps, int servings, Author author) {
+	public Recipe(int id, String name, List<Ingredient> ingredients, List<Step> steps, int servings, List<Author> authors, String type) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.ingredients = ingredients;
 		this.steps = steps;
 		this.servings = servings;
-		this.author = author;
+		this.authors = authors;
+		this.type = type;
 	}
 
 
@@ -85,13 +91,21 @@ public class Recipe {
 	}
 
 
-	public Author getAuthor() {
-		return author;
+	public List<Author> getAuthors() {
+		return authors;
 	}
 
 
-	public void setAuthor(Author author) {
-		this.author = author;
+	public void setAuthors(List<Author> authors) {
+		this.authors = authors;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 	
 	

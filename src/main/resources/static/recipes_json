@@ -2,51 +2,61 @@
   {
     "id": 1,
     "name": "Nutella Pie",
+    "type": "sweet",
     "ingredients": [
       {
         "quantity": 2,
         "measure": "CUP",
-        "ingredient": "Graham Cracker crumbs"
+        "ingredient": "Graham Cracker crumbs",
+        "type": "flourOrSolid"
       },
       {
         "quantity": 6,
         "measure": "TBLSP",
-        "ingredient": "unsalted butter, melted"
+        "ingredient": "unsalted butter, melted",
+        "type": "fat"
       },
       {
         "quantity": 0.5,
         "measure": "CUP",
-        "ingredient": "granulated sugar"
+        "ingredient": "granulated sugar",
+        "type": "sweetener"
       },
       {
         "quantity": 1.5,
         "measure": "TSP",
-        "ingredient": "salt"
+        "ingredient": "salt",
+        "type": "seasoning"
       },
       {
         "quantity": 5,
         "measure": "TBLSP",
-        "ingredient": "vanilla"
+        "ingredient": "vanilla",
+        "type": "seasoning"
       },
       {
         "quantity": 1,
         "measure": "K",
-        "ingredient": "Nutella or other chocolate-hazelnut spread"
+        "ingredient": "Nutella or other chocolate-hazelnut spread",
+        "type": "sweetener"
       },
       {
         "quantity": 500,
         "measure": "G",
-        "ingredient": "Mascapone Cheese(room temperature)"
+        "ingredient": "Mascapone Cheese(room temperature)",
+        "type": "fat"
       },
       {
         "quantity": 1,
         "measure": "CUP",
-        "ingredient": "heavy cream(cold)"
+        "ingredient": "heavy cream(cold)",
+        "type": "fat"
       },
       {
         "quantity": 4,
         "measure": "OZ",
-        "ingredient": "cream cheese(softened)"
+        "ingredient": "cream cheese(softened)",
+        "type": "fat"
       }
     ],
     "steps": [
@@ -100,62 +110,79 @@
         "thumbnailURL": ""
       }
     ],
+    "author": [
+      {
+        "name": "Miriam",
+        "website":"udacity.com"
+      }
+    ],  
     "servings": 8,
     "image": ""
   },
   {
     "id": 2,
     "name": "Brownies",
+    "type": "sweet",
     "ingredients": [
       {
         "quantity": 350,
         "measure": "G",
-        "ingredient": "Bittersweet chocolate (60-70% cacao)"
+        "ingredient": "Bittersweet chocolate (60-70% cacao)",
+        "type": "fat"
       },
       {
         "quantity": 226,
         "measure": "G",
-        "ingredient": "unsalted butter"
+        "ingredient": "unsalted butter",
+        "type": "fat"
       },
       {
         "quantity": 300,
         "measure": "G",
-        "ingredient": "granulated sugar"
+        "ingredient": "granulated sugar",
+        "type": "sweetener"
       },
       {
         "quantity": 100,
         "measure": "G",
-        "ingredient": "light brown sugar"
+        "ingredient": "light brown sugar",
+        "type": "sweetener"
       },
       {
         "quantity": 5,
         "measure": "UNIT",
-        "ingredient": "large eggs"
+        "ingredient": "large eggs",
+        "type": "egg"
       },
       {
         "quantity": 1,
         "measure": "TBLSP",
-        "ingredient": "vanilla extract"
+        "ingredient": "vanilla extract",
+        "type": "flavoring"
       },
       {
         "quantity": 140,
         "measure": "G",
-        "ingredient": "all purpose flour"
+        "ingredient": "all purpose flour",
+        "type": "flourOrSolid"
       },
       {
         "quantity": 40,
         "measure": "G",
-        "ingredient": "cocoa powder"
+        "ingredient": "cocoa powder",
+        "type": "flavoring"
       },
       {
         "quantity": 1.5,
         "measure": "TSP",
-        "ingredient": "salt"
+        "ingredient": "salt",
+        "type": "seasoning"
       },
       {
         "quantity": 350,
         "measure": "G",
-        "ingredient": "semisweet chocolate chips"
+        "ingredient": "semisweet chocolate chips",
+        "type": "flavoring"
       }
     ],
     "steps": [
@@ -236,56 +263,67 @@
   {
     "id": 3,
     "name": "Yellow Cake",
+    "type": "sweet",
     "ingredients": [
       {
         "quantity": 400,
         "measure": "G",
-        "ingredient": "sifted cake flour"
+        "ingredient": "sifted cake flour",
+        "type": "flourOrSolid"
       },
       {
         "quantity": 700,
         "measure": "G",
-        "ingredient": "granulated sugar"
+        "ingredient": "granulated sugar",
+        "type": "sweetener"
       },
       {
         "quantity": 4,
         "measure": "TSP",
-        "ingredient": "baking powder"
+        "ingredient": "baking powder",
+        "type": "yeastOrLeaveningAgent"
       },
       {
         "quantity": 1.5,
         "measure": "TSP",
-        "ingredient": "salt"
+        "ingredient": "salt",
+        "type": "seasoning"
       },
       {
         "quantity": 2,
         "measure": "TBLSP",
-        "ingredient": "vanilla extract, divided"
+        "ingredient": "vanilla extract, divided",
+        "type": "flavoring"
       },
       {
         "quantity": 8,
         "measure": "UNIT",
-        "ingredient": "egg yolks"
+        "ingredient": "egg yolks",
+        "type": "egg"
       },
       {
         "quantity": 323,
         "measure": "G",
-        "ingredient": "whole milk"
+        "ingredient": "whole milk",
+        "type": "liquid"
       },
       {
         "quantity": 961,
         "measure": "G",
-        "ingredient": "unsalted butter, softened and cut into 1 in. cubes"
+        "ingredient": "unsalted butter, softened and cut into 1 in. cubes",
+        "type": "fat"
       },
       {
         "quantity": 6,
         "measure": "UNIT",
-        "ingredient": "egg whites"
+        "ingredient": "egg whites",
+        "type": "egg"
       },
       {
         "quantity": 283,
         "measure": "G",
-        "ingredient": "melted and cooled bittersweet or semisweet chocolate"
+        "ingredient": "melted and cooled bittersweet or semisweet chocolate",
+        "type": "fat"
       }
     ],
     "steps": [
@@ -387,51 +425,61 @@
   {
     "id": 4,
     "name": "Cheesecake",
+    "type": "sweet",
     "ingredients": [
       {
         "quantity": 2,
         "measure": "CUP",
-        "ingredient": "Graham Cracker crumbs"
+        "ingredient": "Graham Cracker crumbs",
+        "type": "flourOrSolid"
       },
       {
         "quantity": 6,
         "measure": "TBLSP",
-        "ingredient": "unsalted butter, melted"
+        "ingredient": "unsalted butter, melted",
+        "type": "fat"
       },
       {
         "quantity": 250,
         "measure": "G",
-        "ingredient": "granulated sugar"
+        "ingredient": "granulated sugar",
+        "type": "sweetener"
       },
       {
         "quantity": 1,
         "measure": "TSP",
-        "ingredient": "salt"
+        "ingredient": "salt",
+        "type": "seasoning"
       },
       {
         "quantity": 4,
         "measure": "TSP",
-        "ingredient": "vanilla,divided"
+        "ingredient": "vanilla,divided",
+        "type": "flavoring"
       },
       {
         "quantity": 680,
         "measure": "G",
-        "ingredient": "cream cheese, softened"
+        "ingredient": "cream cheese, softened",
+        "type": "fat"
       },
       {
         "quantity": 3,
         "measure": "UNIT",
-        "ingredient": "large whole eggs"
+        "ingredient": "large whole eggs",
+        "type": "egg"
       },
       {
         "quantity": 2,
         "measure": "UNIT",
-        "ingredient": "large egg yolks"
+        "ingredient": "large egg yolks",
+        "type": "egg"
       },
       {
         "quantity": 250,
         "measure": "G",
-        "ingredient": "heavy cream"
+        "ingredient": "heavy cream",
+        "type": "fat"
       }
     ],
     "steps": [
