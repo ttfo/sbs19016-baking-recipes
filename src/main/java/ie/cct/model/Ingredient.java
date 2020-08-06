@@ -6,6 +6,7 @@ public class Ingredient implements IngredientType  {
 	private Measure measure;
 	private IngredientType.ingredientCategory ingredientCategory;
 	
+	public Ingredient() {}
 	
 	public Ingredient(String ingredientName, Measure measure,
 			ie.cct.model.IngredientType.ingredientCategory ingredientCategory) {

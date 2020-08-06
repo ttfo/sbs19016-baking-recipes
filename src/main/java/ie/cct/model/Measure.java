@@ -17,12 +17,12 @@ public class Measure implements MeasurementSystem {
 	private static double ounceToGram = 28.35; // 1 ounce = 28.35 gr
 	private static double fluidOunceToML = 29.57; // 1 fluid ounce = 29.57 ml
 	
-	private static List<String> measurementUnitUsVolType = Arrays.asList("tsp", "Tbsp", "flOz", "cup", "pint");
+	private static List<String> measurementUnitUsVolType = Arrays.asList("TSP", "TBLSP", "flOz", "CUP", "pint");
 	private static List<Double> measurementUnitUsVolInFlOz = Arrays.asList(0.17, 0.5, 1.0, 8.0, 16.0); // flOz is taken as reference unit
 	
 	private static List<HashMap> measurementUnitUsVol = buildMeasHashMap(measurementUnitUsVolType, measurementUnitUsVolInFlOz);
 
-	private static List<String> measurementUnitUsWeightType = Arrays.asList("oz", "lb");
+	private static List<String> measurementUnitUsWeightType = Arrays.asList("OZ", "lb");
 	private static List<Double> measurementUnitUsWeightInOz = Arrays.asList(1.0, 16.0); // Oz is taken as reference unit
 	
 	private static List<HashMap> measurementUnitUsWeight = buildMeasHashMap(measurementUnitUsWeightType, measurementUnitUsWeightInOz);
@@ -32,25 +32,29 @@ public class Measure implements MeasurementSystem {
 	
 	private static List<HashMap> measurementUnitMetrVol = buildMeasHashMap(measurementUnitMetrVolType, measurementUnitMetrVolInMl);
 	
-	private static List<String> measurementUnitMetrWeightType = Arrays.asList("gr", "kg");
+	private static List<String> measurementUnitMetrWeightType = Arrays.asList("G", "K");
 	private static List<Double> measurementUnitMetrWeightInGr = Arrays.asList(1.0, 1000.0); // gr is taken as reference unit	
 	
 	private static List<HashMap> measurementUnitMetrWeight = buildMeasHashMap(measurementUnitMetrWeightType, measurementUnitMetrWeightInGr);
 	
-	List<List<String>> allMeasurementUnits = Arrays.asList(measurementUnitUsVolType, measurementUnitUsWeightType, measurementUnitMetrVolType, measurementUnitMetrWeightType);
+	private static List<String> measurementUnitGeneric = Arrays.asList("UNIT");
+	
+	private static List<List<String>> allMeasurementUnits = Arrays.asList(measurementUnitUsVolType, measurementUnitUsWeightType, measurementUnitMetrVolType, measurementUnitMetrWeightType, measurementUnitGeneric);
+	
+	private static List<String> allMeasurementUnitsAsList = mergeAllMeasurementUnits();
 	
 	private double measurementValue;
 	private String measurementUnit;
 	
+	
+	public Measure() {}
 	
 	// Constructor
 	public Measure(double measurementValue, String measurementUnit) throws InvalidParameterException {
 		this.measurementValue = measurementValue;
 		
 		// verify that measurementUnit is valid
-		for (List<String> measList : allMeasurementUnits) {
-			
-			if (measList.contains(measurementUnit)) {
+		if (allMeasurementUnitsAsList.contains(measurementUnit)) {
 				this.measurementUnit = measurementUnit;
 				
 				// defining what measurement system is being used, based on measurement unit provided
@@ -66,13 +70,15 @@ public class Measure implements MeasurementSystem {
 				} else if (measurementUnitMetrWeightType.contains(measurementUnit)) {
 					this.setMeasurementType(ie.cct.model.MeasurementSystem.measurementType.weight);
 					this.setMeasurmentLocalSystem(ie.cct.model.MeasurementSystem.measurmentLocalSystem.metric);			
+				} else if (measurementUnitGeneric.contains(measurementUnit)) {
+					this.setMeasurementType(ie.cct.model.MeasurementSystem.measurementType.generic);
+					this.setMeasurmentLocalSystem(ie.cct.model.MeasurementSystem.measurmentLocalSystem.generic);			
 				}
 				
-			} else {
-				throw new InvalidParameterException();
-			}
-		
-		}
+				return;
+		} else {
+			throw new InvalidParameterException();
+		} 
 		
 	}
 	
@@ -97,20 +103,30 @@ public class Measure implements MeasurementSystem {
 	}
 	
 	
+	public static List<String> mergeAllMeasurementUnits() {
+		
+		List<String> myMeasurementUnits = new ArrayList<String>();
+		
+		for (List<String> measList : allMeasurementUnits) {
+			for (String meas : measList) {			
+				myMeasurementUnits.add(meas);
+			}
+		}
+		
+		return myMeasurementUnits;
+	
+	}
+	
 	public void setMeasurementUnit(String measurementUnit) throws InvalidParameterException {
 		
 		// 'measurementUnit' is the unit provided by the user
 		// check if it matches with any of the available units 
-		
-		for (List<String> measList : allMeasurementUnits) {
-		
-			if (measList.contains(measurementUnit)) {
+			
+			if (allMeasurementUnitsAsList.contains(measurementUnit)) {
 				this.measurementUnit = measurementUnit;
 			} else {
 				throw new InvalidParameterException();
 			}
-		
-		}
 		
 	}
 	

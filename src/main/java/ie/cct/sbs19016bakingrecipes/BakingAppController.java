@@ -17,6 +17,8 @@ public class BakingAppController {
 	public BakingAppController() {
 		
 		// Populate with initial recipes
+		LocalJsonParser myJP = new LocalJsonParser();
+		//myBakingRecipes = myJP.myRecipeBuilder();
 		
 	}
 	

@@ -12,6 +12,8 @@ public class Recipe {
 	private String image;
 	private Author author;
 	
+	public Recipe() {}
+	
 	public Recipe(int id, String name, List<Ingredient> ingredients, List<Step> steps, int servings, Author author) {
 		super();
 		this.id = id;

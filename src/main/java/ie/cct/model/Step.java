@@ -8,6 +8,7 @@ public class Step {
 	private String videoURL;
 	private String thumbnailURL;
 	
+	public Step() {}
 	
 	public Step(int id, String shortDescription) {
 		super();
