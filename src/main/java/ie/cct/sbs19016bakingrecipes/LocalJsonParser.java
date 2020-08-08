@@ -160,6 +160,7 @@ public class LocalJsonParser {
 					
 					author.setName(jObjAut.get("name").getAsString());
 					author.setWebsite(jObjAut.get("website").getAsString());
+					author.setId(jObjAut.get("id").getAsInt());
 					
 					authors.add(author);
 									

@@ -113,7 +113,8 @@
     "author": [
       {
         "name": "Miriam",
-        "website":"udacity.com"
+        "website":"udacity.com",
+        "id": 1
       }
     ],  
     "servings": 8,
@@ -260,7 +261,8 @@
     "author": [
       {
         "name": "Miriam",
-        "website":"udacity.com"
+        "website":"udacity.com",
+        "id": 1
       }
     ], 
     "servings": 8,
@@ -428,7 +430,8 @@
     "author": [
       {
         "name": "Miriam",
-        "website":"udacity.com"
+        "website":"udacity.com",
+        "id": 1
       }
     ], 
     "servings": 8,
@@ -590,10 +593,94 @@
     "author": [
       {
         "name": "Miriam",
-        "website":"udacity.com"
+        "website":"udacity.com",
+        "id": 1
       }
     ], 
     "servings": 8,
     "image": ""
-  }
+  },
+  {
+    "id": 5,
+    "name": "Pizza",
+    "type": "savoury",
+    "ingredients": [
+      {
+        "quantity": 100,
+        "measure": "G",
+        "ingredient": "sourdough starter",
+        "type": "yeastOrLeaveningAgent"
+      },
+      {
+        "quantity": 500,
+        "measure": "G",
+        "ingredient": "manitoba flour",
+        "type": "flourOrSolid"
+      },
+      {
+        "quantity": 350,
+        "measure": "ml",
+        "ingredient": "water",
+        "type": "liquid"
+      },
+      {
+        "quantity": 13,
+        "measure": "G",
+        "ingredient": "salt",
+        "type": "seasoning"
+      },
+      {
+        "quantity": 2,
+        "measure": "TSP",
+        "ingredient": "olive oil",
+        "type": "fat"
+      }
+    ],
+    "steps": [
+      {
+        "id": 0,
+        "shortDescription": "Sourdough starter, get it ready",
+        "description": "Prepare your sourdough starter as per video instructions",
+        "videoURL": "https://www.youtube.com/watch?v=Xy2ZoGG8IGI",
+        "thumbnailURL": ""
+      },
+      {
+        "id": 1,
+        "shortDescription": "Mix it up",
+        "description": "Mix all ingredients and prepare dough, let it rest 2 hours",
+        "videoURL": "",
+        "thumbnailURL": ""
+      },
+      {
+        "id": 2,
+        "shortDescription": "Make your pizza balls",
+        "description": "Get 4 balls from the dough, let it rest another 6 hours",
+        "videoURL": "",
+        "thumbnailURL": ""
+      },
+      {
+        "id": 3,
+        "shortDescription": "Make pizza!",
+        "description": "Roll out the dough and add toppings",
+        "videoURL": "",
+        "thumbnailURL": ""
+      },
+      {
+        "id": 4,
+        "shortDescription": "Bake the pizza",
+        "description": "Bake the pizza for 10 minutes in the oven preheated at 250 degrees C",
+        "videoURL": "",
+        "thumbnailURL": ""
+      }
+    ],
+    "author": [
+      {
+        "name": "Chef Barbato",
+        "website":"https://www.chefstefanobarbato.com",
+        "id": 2
+      }
+    ], 
+    "servings": 4,
+    "image": ""
+  }  
 ]

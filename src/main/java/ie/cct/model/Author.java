@@ -4,6 +4,7 @@ public class Author {
 	
 	private String name;
 	private String website;
+	private int id;
 	
 	public Author() {};	
 	
@@ -29,5 +30,13 @@ public class Author {
 	public void setWebsite(String website) {
 		this.website = website;
 	};
+	
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }	
 
 }

@@ -15,7 +15,7 @@ public class Recipe {
 	private int servings;
 	private String image;
 	private List<Author> authors;
-	private String type;
+	private String type; // can be sweet or savoury
 	
 	public Recipe() {}
 	
