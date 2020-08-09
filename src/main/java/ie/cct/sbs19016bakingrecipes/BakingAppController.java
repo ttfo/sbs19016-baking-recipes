@@ -40,9 +40,9 @@ public class BakingAppController {
 	public String welcomeMessage() {
 	    return "<b>Home Baker App DB - proof of concept</b><br><br>" +
 	    		"End-points:<br>" +
-	    		"🅐 /recipes<br>&emsp;&emsp;&emsp;&emsp;<i>=> returns list of recipes in JSON format</i><br>" +
-	    		"🅑 /recipe?id={recipe-id}<br>&emsp;&emsp;&emsp;&emsp;<i>=> returns individual recipe in JSON format, by recipe id</i><br>" +
-	    		"🅒 /ingredients?recipe-id={recipe-id}<br>&emsp;&emsp;&emsp;&emsp;<i>=> returns list of ingredients by recipe id in JSON format</i><br>";
+	    		"🅐 <b>GET</b> /recipes<br>&emsp;&emsp;&emsp;&emsp;<i>=> returns list of recipes in JSON format</i><br>" +
+	    		"🅑 <b>GET</b> /recipe?id={recipe-id}<br>&emsp;&emsp;&emsp;&emsp;<i>=> returns individual recipe in JSON format, by recipe id</i><br>" +
+	    		"🅒 <b>GET</b> /ingredients?recipe-id={recipe-id}<br>&emsp;&emsp;&emsp;&emsp;<i>=> returns list of ingredients by recipe id in JSON format</i><br>";
 	}
 	
 	/*
