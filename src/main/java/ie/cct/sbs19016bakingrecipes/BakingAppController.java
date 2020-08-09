@@ -8,7 +8,10 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import ie.cct.model.Ingredient;
@@ -32,12 +35,21 @@ public class BakingAppController {
 		}
 	}
 	
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@ResponseBody
+	public String welcomeMessage() {
+	    return "<b>Home Baker App DB - proof of concept</b><br><br>" +
+	    		"End-points:<br>" +
+	    		"🅐 /recipes<br>&emsp;&emsp;&emsp;&emsp;<i>=> returns list of recipes in JSON format</i><br>" +
+	    		"🅑 /recipe?id={recipe-id}<br>&emsp;&emsp;&emsp;&emsp;<i>=> returns individual recipe in JSON format, by recipe id</i><br>" +
+	    		"🅒 /ingredients?recipe-id={recipe-id}<br>&emsp;&emsp;&emsp;&emsp;<i>=> returns list of ingredients by recipe id in JSON format</i><br>";
+	}
 	
 	/*
 	 * END-POINT => "Get my recipes"
 	 * Returns full list of recipes in JSON format
 	 */	
-	@GetMapping("recipes") // http://localhost:8080/get-recipes
+	@GetMapping("recipes") // http://localhost:8080/recipes
 	public List<Recipe> getRecipes() { 
 		return myBakingRecipes;
 	}
