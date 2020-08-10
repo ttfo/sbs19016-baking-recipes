@@ -106,5 +106,34 @@ public class BakingAppController {
 		}
 	}
 	
+	
+	/*
+	 * END-POINT => recipe?name=string
+	 * Returns individual recipe by name
+	 * String needs to be at least 3 characters long
+	 */	
+	@GetMapping("recipe-search") // http://localhost:8080/recipe-search?name=pizza
+	public ResponseEntity<List<Recipe>> getRecipeByName(@RequestParam(name="name", required=true) String recipeNameQuery) { 
+		
+		List<Recipe> matchedRecipes = new ArrayList<Recipe>();
+		ResponseEntity<List<Recipe>> myRE = new ResponseEntity<List<Recipe>>(matchedRecipes, HttpStatus.NO_CONTENT);
+		
+		if (recipeNameQuery.length() > 2) { // only perform search if query is at least 3 characters long
+			for (Recipe recipe : myBakingRecipes) {
+				if (recipe.getName().toLowerCase().contains(recipeNameQuery.toLowerCase())) { // make search case insensitive
+					matchedRecipes.add(recipe);
+				}
+			}
+		}
+		if (matchedRecipes.isEmpty()) {
+			myRE = new ResponseEntity<List<Recipe>>(matchedRecipes, HttpStatus.NOT_FOUND);
+		} else {
+			myRE = new ResponseEntity<List<Recipe>>(matchedRecipes, HttpStatus.OK);
+		}
+		
+		return myRE;
+		
+	}
+	
 
 }
