@@ -3,6 +3,7 @@
     "id": 1,
     "name": "Nutella Pie",
     "type": "sweet",
+    "notes": "",
     "ingredients": [
       {
         "quantity": 2,
@@ -124,6 +125,7 @@
     "id": 2,
     "name": "Brownies",
     "type": "sweet",
+    "notes": "",
     "ingredients": [
       {
         "quantity": 350,
@@ -272,6 +274,7 @@
     "id": 3,
     "name": "Yellow Cake",
     "type": "sweet",
+    "notes": "",
     "ingredients": [
       {
         "quantity": 400,
@@ -441,6 +444,7 @@
     "id": 4,
     "name": "Cheesecake",
     "type": "sweet",
+    "notes": "",
     "ingredients": [
       {
         "quantity": 2,
@@ -604,6 +608,7 @@
     "id": 5,
     "name": "Pizza",
     "type": "savoury",
+    "notes": "This recipe only works with sourdough starter as leavening agent and manitoba flour.",
     "ingredients": [
       {
         "quantity": 100,

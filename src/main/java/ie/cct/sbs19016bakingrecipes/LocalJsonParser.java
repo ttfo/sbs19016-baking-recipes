@@ -102,6 +102,7 @@ public class LocalJsonParser {
 			recipe.setName(jObj.get("name").getAsString());
 			recipe.setType(jObj.get("type").getAsString());
 			recipe.setServings(jObj.get("servings").getAsInt());
+			recipe.setNotes(jObj.get("notes").getAsString());
 			recipe.setImage(jObj.get("image").getAsString());
 			
 			JsonArray ingredientsJson = jObj.get("ingredients").getAsJsonArray();

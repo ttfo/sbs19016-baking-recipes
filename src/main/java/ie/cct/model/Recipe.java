@@ -16,10 +16,12 @@ public class Recipe {
 	private String image;
 	private List<Author> authors;
 	private String type; // can be sweet or savoury
+	private String notes;
 	
 	public Recipe() {}
 	
-	public Recipe(int id, String name, List<Ingredient> ingredients, List<Step> steps, int servings, List<Author> authors, String type) {
+	public Recipe(int id, String name, List<Ingredient> ingredients, List<Step> steps, 
+			int servings, List<Author> authors, String type, String notes) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -28,6 +30,7 @@ public class Recipe {
 		this.servings = servings;
 		this.authors = authors;
 		this.type = type;
+		this.notes = notes;
 	}
 
 
@@ -108,5 +111,12 @@ public class Recipe {
 		this.type = type;
 	}
 	
-	
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
+    
 }
