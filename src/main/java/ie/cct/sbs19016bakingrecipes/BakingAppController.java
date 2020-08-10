@@ -38,11 +38,20 @@ public class BakingAppController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	@ResponseBody
 	public String welcomeMessage() {
-	    return "<b>Home Baker App DB - proof of concept</b><br><br>" +
+	    return "<b>Home Baker App DB - a RESTful web service proof of concept</b><br><br>" +
+	    		"Student: Mattia Bergamini<br>" +
+	    		"CCT College, Dublin<br><br>" +
+	    		"Technologies used:<br>" +
+	    		"&emsp;&emsp;&emsp;&emsp;Project: Maven<br>" +
+	    		"&emsp;&emsp;&emsp;&emsp;Language: Java 8<br>" +
+	    		"&emsp;&emsp;&emsp;&emsp;Packaging: JAR<br>" +
+	    		"&emsp;&emsp;&emsp;&emsp;Application framework: Spring Boot<br>" +
+	    		"&emsp;&emsp;&emsp;&emsp;Could service: Azure<br><br>" +
 	    		"End-points:<br>" +
 	    		"🅐 <b>GET</b> /recipes<br>&emsp;&emsp;&emsp;&emsp;<i>=> returns list of recipes in JSON format</i><br>" +
 	    		"🅑 <b>GET</b> /recipe?id={recipe-id}<br>&emsp;&emsp;&emsp;&emsp;<i>=> returns individual recipe in JSON format, by recipe id</i><br>" +
-	    		"🅒 <b>GET</b> /ingredients?recipe-id={recipe-id}<br>&emsp;&emsp;&emsp;&emsp;<i>=> returns list of ingredients by recipe id in JSON format</i><br>";
+	    		"🅒 <b>GET</b> /ingredients?recipe-id={recipe-id}<br>&emsp;&emsp;&emsp;&emsp;<i>=> returns list of ingredients by recipe id in JSON format</i><br>" +
+	    		"🅓 <b>GET</b> /recipe-search?name={recipe-name-query}<br>&emsp;&emsp;&emsp;&emsp;<i>=> returns list of recipes that match string in query</i><br>";
 	}
 	
 	/*
