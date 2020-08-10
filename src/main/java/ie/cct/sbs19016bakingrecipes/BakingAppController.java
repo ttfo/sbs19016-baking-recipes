@@ -40,7 +40,6 @@ public class BakingAppController {
 	public String welcomeMessage() {
 	    return "<b>Home Baker App DB - a RESTful web service proof of concept</b><br><br>" +
 	    		"Student: Mattia Bergamini<br>" +
-	    		"CCT College, Dublin<br><br>" +
 	    		"Technologies used:<br>" +
 	    		"&emsp;&emsp;&emsp;&emsp;Project: Maven<br>" +
 	    		"&emsp;&emsp;&emsp;&emsp;Language: Java 8<br>" +
