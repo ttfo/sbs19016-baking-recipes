@@ -46,6 +46,7 @@ public class BakingAppController {
 	    		"&emsp;&emsp;&emsp;&emsp;Packaging: JAR<br>" +
 	    		"&emsp;&emsp;&emsp;&emsp;Application framework: Spring Boot<br>" +
 	    		"&emsp;&emsp;&emsp;&emsp;Could service: Azure<br><br>" +
+	    		"Count of recipes stored: " + myBakingRecipes.size() + "<br><br>" +
 	    		"End-points:<br>" +
 	    		"🅐 <b>GET</b> /recipes<br>&emsp;&emsp;&emsp;&emsp;<i>=> returns list of recipes in JSON format</i><br>" +
 	    		"🅑 <b>GET</b> /recipe?id={recipe-id}<br>&emsp;&emsp;&emsp;&emsp;<i>=> returns individual recipe in JSON format, by recipe id</i><br>" +
